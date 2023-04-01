@@ -1,6 +1,7 @@
 <?php
 session_start();
-
+ini_set('display_errors', 1);
+error_reporting(-1);
 // Connect to MySQL database
 $dbhost = 'localhost';
 $dbname = 'dblab8';
@@ -72,24 +73,61 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Update Information</title>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="bootstrap-5.3.0-alpha2-dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="bootstrap-5.3.0-alpha2-dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body>
-    <h1>Update Information</h1>
-    <form method="POST">
-        <label for="first_name">First Name:</label>
-        <input type="text" name="first_name" value="<?php echo $user['first_name']; ?>"><br><br>
-        <label for="last_name">Last Name:</label>
-        <input type="text" name="last_name" value="<?php echo $user['last_name']; ?>"><br><br>
-        <label for="email">Email:</label>
-        <input type="email" name="email" value="<?php echo $user['email']; ?>"><br><br>
-        <label for="password">Password:</label>
-        <input type="password" name="password"><br><br>
-        <input type="submit" value="Update Information">
-    </form>
-    <br>
-    <a href="welcome.php">Back to Welcome Page</a>
+<body style="background-color:white;">
+    <div class="container-fluid p-5 bg-danger text-white text-center">
+        <h1 class="display-3">Update Information</h1>
+        <p>In the form below change the relevant fields.</p>
+    </div>
+    <nav class="navbar navbar-expand-sm bg-danger navbar-dark justify-content-center">
+			<ul class="navbar-nav">
+			  <li class="nav-item">
+				<a class="nav-link" href="welcome.php">Back to Welcome</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="delete_account.php?PHPSESSID=<?php echo session_id(); ?>">Delete Account</a>
+			  </li>
+              <li class="nav-item">
+				<a class="nav-link" href="logout.php">Logout</a>
+			  </li>
+			</ul>
+	</nav>
+
+	<div class="container mt-3">
+        <form method="POST">
+			<div class="row gy-3">
+				<div class="col">
+                    <label for="first_name" class="form-label">First Name:</label>
+                    <input class="form-control" type="text" name="first_name" value="<?php echo $user['first_name']; ?>">
+                </div>
+				<div class="col">
+                    <label for="last_name" class="form-label">Last Name:</label>
+                    <input class="form-control" type="text" name="last_name" value="<?php echo $user['last_name']; ?>">
+                </div>
+            </div>
+			<div class="row gy-6">
+                <hr>
+                <label for="email" class="form-label">Email:</label>
+                <input class="form-control" type="email" name="email" value="<?php echo $user['email']; ?>">
+			</div>
+			<div class="row gy-6">
+                <hr>
+                <label for="password" class="form-label">Password:</label>
+                <input class="form-control" type="password" name="password">
+            </div>
+			<div class="row gy-6">
+                <hr>
+                <input type="submit" value="Update Information" class="btn btn-success btn-large justify-content-center">
+            </div>
+        </form>
+    </div>
+    <!-- <a href="welcome.php">Back to Welcome Page</a> -->
 </body>
 </html>

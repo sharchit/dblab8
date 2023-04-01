@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Connect to the MySQL database
     $db_host = 'localhost';
     $db_user = 'root';
-    $db_password = 'iitp@123';
+    $db_password = 'sharchit';
     $db_name = 'dblab8';
     $db = new mysqli($db_host, $db_user, $db_password, $db_name);
     // Query the "users" table for the user's email and password
@@ -22,10 +22,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['first_name'] = $row['first_name'];
             $_SESSION['last_name'] = $row['last_name'];
-            exit();
+            $_SESSION['email'] = $row['email'];
+            $_SESSION['password'] = $row['password'];
+            // echo $_SESSION['first_name']  ' '  $_SESSION['last_name '];
+            header("Location: welcome.php");
         }
     }
-    echo $_SESSION['first_name'] . $_SESSION['last_name'];
+    // echo $_SESSION['first_name'] . $_SESSION['last_name'];
     // Authentication failed
     $error = 'Invalid email or password';
 }

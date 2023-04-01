@@ -6,7 +6,7 @@ ini_set('display_errors', 1);
 error_reporting(-1);
 $host = "localhost";
 $username = "root";
-$password = "iitp@123";
+$password = "sharchit";
 $conn = mysqli_connect($host, $username, $password);
 // Check if the connection was successful
 if (mysqli_connect_errno()) {
